@@ -6,10 +6,16 @@ class StudentsController < ApplicationController
   end
 
   def show
+    @student = Student.find(params[:id])
   end
 
-  private
+  def activate
+    @student = Student.find(params[:id])
+    @student.toggle!(:active)
+    redirect_to @student
+  end 
 
+  private
     def set_student
       @student = Student.find(params[:id])
     end
